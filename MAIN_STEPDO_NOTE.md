@@ -781,3 +781,7 @@
         }
 
         export default App;
+
+
+
+8. Xây dựng phần Header (note sang file NOTE_HEADER.md)

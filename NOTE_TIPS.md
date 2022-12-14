@@ -83,3 +83,6 @@ function App() {
 8. import { Fragment } from 'react';
 
 - Fragment sinh ra để chứa thôi. Nó ko sinh thẻ trong DOM
+
+
+9. A SƠN bảo là hãy code thuần cho tốt đã, rồi hãy dùng thư viện vì như thế mình mới hiểu dc cái gốc.
