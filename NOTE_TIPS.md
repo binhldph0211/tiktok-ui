@@ -186,3 +186,11 @@ target="_blank"
 16. Mất hiệu ứng chuột trong CSS:
 
 pointer-events: none;
+
+
+17. Xem code dễ hơn ở trên github như ở trên VSCode
+
+- B1: vào dự án:
+VD: https://github.com/binhldph0211/tiktok-ui
+
+- B2: bấm dấu chấm  (.)  
