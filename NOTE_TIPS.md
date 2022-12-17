@@ -86,3 +86,103 @@ function App() {
 
 
 9. A SƠN bảo là hãy code thuần cho tốt đã, rồi hãy dùng thư viện vì như thế mình mới hiểu dc cái gốc.
+
+10. Một cách cài fontawesome cũng hay:
+
+- Ta copy đoạn mã sau --> cho vào dependencies của file 'package.json'
+
+    "@fortawesome/fontawesome-svg-core": "^1.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.0.0",
+    "@fortawesome/free-regular-svg-icons": "^6.0.0",
+    "@fortawesome/free-solid-svg-icons": "^6.0.0",
+    "@fortawesome/react-fontawesome": "^0.1.17",
+
+- Chạy lệnh: npm install
+
+- Kiểm tra xem OK chưa: vào node_modules --> xem có @fontawesome ko? Nếu có thì OK, nếu ko thì chưa cài dc
+
+- Xài: với Reactjs:
+
+  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+  import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+
+  <FontAwesomeIcon icon={faCircleXmark} />
+
+
+  11. Một kĩ thuật CSS rất hay là: focus vào thằng con 'input' thì thằng cha 'div' hiện border.
+
+  - gõ google: focus within
+    https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within
+  
+  - Cách làm:
+
+    <div className='search'>
+        <input />
+        <button>
+            <FontAwesomeIcon icon={faCircleXmark} />
+        </button>
+        <button>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+    </div>
+
+    .search:focus-within {
+      border: 1px solid red;
+    } 
+
+--> Giải thích cách hoạt động:
+    . focus-within: focus vào bên trong
+    . The :focus-within khớp với một phần tử nếu phần tử đó hoặc bất kỳ phần tử con nào của nó được focus
+
+
+12. thẻ Input khi mình focus vào thì thấy có '|' nhấp nháy ở đầu ô input --> nó dc gọi là 'caret'
+
+- Thay đổi màu sắc cho caret:
+   
+   input {
+    caret-color: red;
+   }
+
+13. Một kĩ thuật rất hay: thẻ input có lớp giả :not()
+
+    <div className={cx('search')}>
+        <input placeholder="Search acounts and videos"/>
+        <button className='search-btn'>
+            <i class="fa-light fa-magnifying-glass"></i>
+        </button>
+    </div>
+
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+
+14. Một kĩ thuật rất hay để xem dc CSS của thằng popper trong devtool (thằng này khi click vào thì nó mới hiện ra - VD: popper lịch sử tìm kiếm)
+
+- B1: Mở devtool
+
+- B2: Console và viết
+
+setTimeout(() => {
+
+    debugger;
+}, 5000);
+
+
+- B3: Trong lúc chờ 5s của setTimeout thì nhanh tay:
+  . Ấn vào nơi mà popper sẽ hiện ra
+  . Sau đó ngồi chờ setTimeout chạy
+
+- B4: Khi setTimeout đã chạy xong thì ta:
+  . Selector (hình con chuột ở devtool) nó hoặc các thành phần của nó và tìm ra cái bạn muốn
+
+
+15. Thẻ 'a' chuyển link sang một tab một thì ta thêm thuộc tính này vào thẻ a:
+
+target="_blank"
+
+
+16. Mất hiệu ứng chuột trong CSS:
+
+pointer-events: none;
