@@ -123,3 +123,21 @@ https://github.com/atomiks/tippyjs-react   // chúng ta dùng cái này
 - Một số cái hay dùng:
     . interactive: để tương tác dc
     . visible: ẩn hay hiện
+
+
+5. Cách lấy icon của tiktok. --> nằm trong forder 'components/Icons/'
+
+
+6. Tạo component Image để thay thế thẻ img --> code trong forder 'components/Image
+
+- Ảnh mặc định dc lấy ở đây: 
+https://placeholder.imageonline.co/
+
+- Giảm dung lượng của ảnh để người dùng tải về ko bị nặng: Vào
+https://tinypng.com/ 
+
+. Đưa ảnh vảo
+. download
+. Xài 
+
+

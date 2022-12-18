@@ -194,3 +194,55 @@ pointer-events: none;
 VD: https://github.com/binhldph0211/tiktok-ui
 
 - B2: bấm dấu chấm  (.)  
+
+
+18. Cách lấy font chữ bản quyền của tiktok
+
+- B1: vào tiktok.com
+
+- B2: Mở devtool lên xem nó dùng font gì
+
+- B3: vào Network --> click vào font
+
+- B4: reload lại trang tiktok.com
+
+- B5: thấy font được response ở Network  --> click chuột phải vào file font --> open new tab --> vậy là tải dc nó về
+
+- Xài:
+  . Đưa các file đó vào dự án của bạn
+  . Nhúng font:
+                
+              @font-face {
+              font-family: ProximaNova;
+              src: url('/assets/fonts/Proxima-Nova-Regular.woff2');
+              font-weight: 400;
+              }
+
+              @font-face {
+                  font-family: ProximaNova;
+                  src: url('/assets/fonts/ProximaNova-Semibold.woff2');
+                  font-weight: 600;
+              }
+
+              @font-face {
+                  font-family: ProximaNova;
+                  src: url('/assets/fonts/Proxima-Nova-Bold.woff');
+                  font-weight: 700;
+              }
+
+              @font-face {
+                  font-family: SofiaPro;
+                  src: url('/assets/fonts/sofiapro-semibold.otf');
+                  font-weight: 700;
+              }
+
+  . Dùng:
+        body {
+          font-family: 'ProximaNova', sans-serif;
+        }
+
+19. url(/)  --> chỉ cần '/' là nó tự hiểu đang ở thư mục 'src'
+
+
+20. Thẻ img thì khó đổi màu cho ảnh. Còn thẻ svg thì có thuộc tính đổi màu trong đó rồi.
+svg dễ đổi  màu ảnh hơn img

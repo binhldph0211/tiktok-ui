@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudUpload,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
@@ -25,6 +24,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -143,7 +144,7 @@ function Header() {
                     {currentUser ? (
                         <Tippy trigger="click" content="Upload video" placement="bottom">
                             <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faCloudUpload} />
+                                <UploadIcon />
                             </button>
                             {/* <button className={cx('action-btn')}>
                                 <FontAwesomeIcon icon={faMessage} />
@@ -158,10 +159,12 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/anh-trai-dep-han-quoc-song-joong-ki.jpg"
                                 alt="Nguyen Van A"
+                                // Khi  nào src - ảnh bị lỗi thì fallback sẽ có tác dụng
+                                fallback="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
                             />
                         ) : (
                             <button className={cx('more-btn')}>
