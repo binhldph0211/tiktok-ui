@@ -246,3 +246,18 @@ VD: https://github.com/binhldph0211/tiktok-ui
 
 20. Thẻ img thì khó đổi màu cho ảnh. Còn thẻ svg thì có thuộc tính đổi màu trong đó rồi.
 svg dễ đổi  màu ảnh hơn img
+
+21. Trong quá trình làm việc thực tế, đôi khi bạn gặp những lỗi khá bất ngờ, không lường trước được.
+Việc đầu tiên là phải xác định được lỗi. Thì làm sao để xác định được --> Dựa vào kinh nghiệm, kĩ năng, và phán đoán của bạn. 
+. Phán đoán thằng này có vấn đề gì mà bị lỗi
+
+
+22. Làm việc với API, ta nên xem phần 'network' của devtool vì ta sẽ xem dc 2 cái:
+. Request   (payload là phần chúng ta gửi đi)
+. Response
+
+
+23. Trong query parameters:
+{ path: '/@:nickname', component: Profile },
+
+--> ':nickname' chính là pattern, nó không có định, nó thay đổi dc

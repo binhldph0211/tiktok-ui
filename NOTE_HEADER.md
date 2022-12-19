@@ -1,5 +1,7 @@
 ************* XÂY DỰNG PHẦN HEADER ************
 
+A. UI
+
 1. Dựng khung Layout mặc định
 
 - Cài đặt thư viện classnames: 
@@ -141,3 +143,67 @@ https://tinypng.com/
 . Xài 
 
 
+B: LOGIC
+
+1. Ban đầu khi xây dựng thì phần Search nằm chung code trong phần Header luôn (Layout).
+Nhưng giờ xử lý logic cho phần Search, chúng ta phải viết nhiều code và dùng nhiều state... Nên chúng ta phải tách riêng nó ra thành một component riêng để dễ xử lý, ko bị ảnh hưởng performance với các component khác trong Header.
+
+
+2. Tôi nghiệm ra dc 1 điều khi xử lý logic
+
+- Người dùng có hành động gì (nghiệp vụ) ---> suy ra cần dùng sự kiện gì ---> Trả về Kết quả gì
+
+
+3. A SƠn bảo là:
+- Ban đầu chúng ta cứ làm đi, chưa ngon dc ngay từ ban đầu đâu
+- Sau đó chúng ta sẽ chia tách, chia nhỏ và tối ưu hóa dần dần
+
+4. Kiến thức cần nắm khi làm việc với API:
+
+. Promise
+. Fetch API
+. Restful API
+. JSON
+
+5. Cấu trúc một url
+
+--> Giao thức :// Hostname / Path ? Query parameters
+
+VD: https://tiktok.fullstack.edu.vn/api/users/search?q=hoaa&type=less
+
+. Giao thức: https
+. Hostname: tiktok.fullstack.edu.vn
+. path: api/users/search
+. Query parameters: q=hoaa&type=less
+
+- Lưu ý:
+    . Về query parameters: Nó có cú pháp là: key=value
+    --> Nếu nhiều parameters thì nối bằng dấu &
+       key1=value1&key2=value2&key3=value3
+
+
+6.  
+. Vấn đề là khi người dùng nhập kí tự trùng với các kí tự đặc biệt (&, ?, =) của query parameters thì sẽ gây ra lỗi
+. Giải quyết vấn dề  --> dùng encodeURIComponent để mã hóa các kí tự của người dùng nhập vào, kể cả khi người dùng nhập '&', '?', '='
+--> Để người dùng nhập tự do thì chúng ta luôn luôn phải có 'encodeURIComponent'
+
+- VD: Với API này: người dùng nhập trong ô input là: (--> sẽ gây ra lỗi)
+    . &&&
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=&&&&type=less`)
+
+    . ===
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q====&type=less`)
+
+    . ?
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=?&type=less`)
+
+- Cho nên chúng ta giải quyết vấn đề trên bằng cách dùng: encodeURIComponent
+
+const [searchValue, setSearchValue] = useState('');
+fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+
+
+7. Trong query parameters:
+{ path: '/@:nickname', component: Profile },
+
+--> ':nickname' chính là pattern, nó không có định, nó thay đổi dc

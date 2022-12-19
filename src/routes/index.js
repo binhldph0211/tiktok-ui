@@ -11,7 +11,8 @@ import { SidebarOnly } from '~/Layout';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/following', component: Following },
-    { path: '/profile', component: Profile },
+    // { path: '/profile', component: Profile },
+    { path: '/@:nickname', component: Profile },
     { path: '/upload', component: Upload, layout: HeaderOnly },
     { path: '/search', component: Search, layout: null },
     { path: '/setting', component: Setting, layout: SidebarOnly },
