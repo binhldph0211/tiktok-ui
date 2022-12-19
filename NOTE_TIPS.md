@@ -261,3 +261,11 @@ Việc đầu tiên là phải xác định được lỗi. Thì làm sao để 
 { path: '/@:nickname', component: Profile },
 
 --> ':nickname' chính là pattern, nó không có định, nó thay đổi dc
+
+
+24. Thuật ngữ 'debounce'
+- Nó là một kĩ thuật dành cho: "Khi bạn gặp tình thế một chuỗi hành động xảy ra liên tục thì bạn chỉ muốn thực hiện cái hành động cuối cùng mà thôi."
+
+- Áp dụng cho các trường hợp như: "search --> tránh gọi API liên tục khi nhập vào ô tìm kiếm. Khi nào nhập xong rồi thì mới gọi API"
+
+==> Bản chất của nó là setTimeout.
