@@ -1,5 +1,5 @@
-function BInh() {
-    return 'chào ban';
+function Binh() {
+    return 'chào ban hien';
 }
 
-export default BInh;
+export default Binh;
