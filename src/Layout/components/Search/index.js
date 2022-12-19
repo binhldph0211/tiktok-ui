@@ -9,6 +9,7 @@ import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
@@ -18,10 +19,14 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    // Để xử lý người dùng nhập vào ô input tìm kiếm --> tránh gọi API liên tục. Khi nào nhập xong thì mới gọi API
+    const debounced = useDebounce(searchValue, 500);
+
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        // if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
@@ -31,7 +36,9 @@ function Search() {
         // Vấn đề là khi người dùng nhập kí tự trùng với các kí tự đặc biệt (&, ?, =) của query parameters thì sẽ gây ra lỗi
         // Giải quyết vấn dề  --> dùng encodeURIComponent để mã hóa các kí tự của người dùng nhập vào, kể cả khi người dùng nhập '&', '?', '='
         // Để người dùng nhập tự do thì chúng ta luôn luôn phải có 'encodeURIComponent'
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+
+        // fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
             .then((res) => res.json())
             .then((res) => {
                 console.log(res.data);
@@ -41,7 +48,8 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debounced]);
+    // }, [searchValue]);
 
     const handleClear = () => {
         setSearchValue('');
