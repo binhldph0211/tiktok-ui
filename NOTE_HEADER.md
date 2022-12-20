@@ -239,3 +239,8 @@ https://www.npmjs.com/package/axios
 
 - Làm cho axios dc gọn gàng hơn --> Create an instance 
     --> code trong forder 'utils/request.js'
+
+
+10. Xử lý cái Warning Tippy ở console của devtools
+
+- Bao bọc cái Tippy bằng một thẻ div hoặc thẻ span

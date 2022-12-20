@@ -280,3 +280,40 @@ Việc đầu tiên là phải xác định được lỗi. Thì làm sao để 
 ==> Bản chất của nó là setTimeout.
 
 
+25. Vấn đề 'hard code' (fix cứng) như link, data,....sẽ gây ra vấn đề khi muốn thay đổi thì phải thay đổi rất nhiều chỗ
+--> Mất thời gian, mất công, mất việc.
+Vì thế để giải quyết vấn đề này, ta chỉ cần đặt biến  --> Chỉ cần thay đổi 1 chỗ thì thay đổi dc tất cả các chỗ khác.
+
+
+26. Scrollbar thường nằm ở thẻ body: Làm scrollbar cho toàn trang: Custom scrollbar
+
+body {
+  overflow-y: overlay;
+}
+
+// SCROLLBAR
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
