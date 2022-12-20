@@ -4,12 +4,15 @@ import classNames from 'classnames/bind';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
+import axios from 'axios';
 
 import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
+import * as request from '~/utils/request';
+import * as searchServices from '~/apiServices/searchServices';
 
 const cx = classNames.bind(styles);
 
@@ -36,20 +39,106 @@ function Search() {
         // Vấn đề là khi người dùng nhập kí tự trùng với các kí tự đặc biệt (&, ?, =) của query parameters thì sẽ gây ra lỗi
         // Giải quyết vấn dề  --> dùng encodeURIComponent để mã hóa các kí tự của người dùng nhập vào, kể cả khi người dùng nhập '&', '?', '='
         // Để người dùng nhập tự do thì chúng ta luôn luôn phải có 'encodeURIComponent'
-
         // fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                console.log(res.data);
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+
+        // Cách 1.
+        //     fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+        //         .then((res) => res.json())
+        //         .then((res) => {
+        //             console.log(res.data);
+        //             setSearchResult(res.data);
+        //             setLoading(false);
+        //         })
+        //         .catch(() => {
+        //             setLoading(false);
+        //         });
+        // }, [debounced]);
+        // }, [searchValue]);
+
+        // Cách 2.
+        //     axios
+        //         .get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
+        //             params: {
+        //                 q: debounced,
+        //                 type: 'less',
+        //             },
+        //         })
+        //         .then((res) => {
+        //             console.log(res.data.data);
+        //             setSearchResult(res.data.data);
+        //             setLoading(false);
+        //         })
+        //         .catch(() => {
+        //             setLoading(false);
+        //         });
+        // }, [debounced]);
+
+        // Cách 3.
+        //     request
+        //         .get('users/search', {
+        //             params: {
+        //                 q: debounced,
+        //                 type: 'less',
+        //             },
+        //         })
+        //         .then((res) => {
+        //             console.log(res.data.data);
+        //             setSearchResult(res.data.data);
+        //             setLoading(false);
+        //         })
+        //         .catch(() => {
+        //             setLoading(false);
+        //         });
+        // }, [debounced]);
+
+        // Cách 4.
+        // Tối ưu phần res.data.data thành res.data
+        //     request
+        //         .get('users/search', {
+        //             params: {
+        //                 q: debounced,
+        //                 type: 'less',
+        //             },
+        //         })
+        //         .then((res) => {
+        //             console.log(res.data);
+        //             setSearchResult(res.data);
+        //             setLoading(false);
+        //         })
+        //         .catch(() => {
+        //             setLoading(false);
+        //         });
+        // }, [debounced]);
+
+        // Cách 5. Viết theo dạng async
+        //     const fetchApi = async () => {
+        //         try {
+        //             const res = await request.get('users/search', {
+        //                 params: {
+        //                     q: debounced,
+        //                     type: 'less',
+        //                 },
+        //             });
+
+        //             setSearchResult(res.data);
+        //             setLoading(false);
+        //         } catch (error) {
+        //             setLoading(false);
+        //         }
+        //     };
+
+        //     fetchApi();
+        // }, [debounced]);
+
+        // Cách 6.
+        const fetchApi = async () => {
+            const result = await searchServices.search(debounced);
+            setSearchResult(result);
+            setLoading(false);
+        };
+
+        fetchApi();
     }, [debounced]);
-    // }, [searchValue]);
 
     const handleClear = () => {
         setSearchValue('');

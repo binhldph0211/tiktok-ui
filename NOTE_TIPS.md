@@ -190,11 +190,20 @@ pointer-events: none;
 
 17. Xem code dễ hơn ở trên github như ở trên VSCode
 
++ Xem toàn bộ code của dự án
+
 - B1: vào dự án:
 VD: https://github.com/binhldph0211/tiktok-ui
 
 - B2: bấm dấu chấm  (.)  
 
++ Xem code của một commit nào đấy
+
+- B1: Bấm vào commit bạn muốn xem
+
+- B2: Bấm vào button 'Browse files'
+
+- B3: bấm dấu chấm  (.) 
 
 18. Cách lấy font chữ bản quyền của tiktok
 
@@ -269,3 +278,5 @@ Việc đầu tiên là phải xác định được lỗi. Thì làm sao để 
 - Áp dụng cho các trường hợp như: "search --> tránh gọi API liên tục khi nhập vào ô tìm kiếm. Khi nào nhập xong rồi thì mới gọi API"
 
 ==> Bản chất của nó là setTimeout.
+
+

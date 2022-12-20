@@ -214,4 +214,28 @@ fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(s
 
 - Áp dụng cho các trường hợp như: "search --> tránh gọi API liên tục khi nhập vào ô tìm kiếm. Khi nào nhập xong rồi thì mới gọi API"
 
+--> code dc viết trong forder 'hooks' và dc dùng trong forder 'Lauout/components/Search/index.js'
 ==> Bản chất của nó là setTimeout.
+
+
+9. Thư viện Axios
+
+- Là thư viện giúp chúng ta làm việc với API
+
+- Có 2 thằng làm việc với API mà browser cung cấp là
+    . XMLHttpRequests
+    . Fetch
+
+- gõ google: Axios github
+https://github.com/axios/axios
+
+or
+https://www.npmjs.com/package/axios
+
+- Cài đặt:
+    . Chạy lệnh: npm install axios
+
+- Xài
+
+- Làm cho axios dc gọn gàng hơn --> Create an instance 
+    --> code trong forder 'utils/request.js'
