@@ -353,3 +353,7 @@ html *::-webkit-scrollbar-track {
     . Các file '.env' phải ngang hàng với file 'package.json' (nó ko nằm trong forder nào hết)
     . Tên các biến bắt đầu bằng 'REACT_APP'
     . Luôn tải lại ứng dụng của bạn sau khi thay đổi tệp .env
+
+
+28. A SƠN thấy các bạn trẻ ko hay review code sau khi làm xong. --> điều đó rất dễ code bị lỗi.
+Vì thế khi làm xong thì bạn nên review lại code. Rồi mới commit.

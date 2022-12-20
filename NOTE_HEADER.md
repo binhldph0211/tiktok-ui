@@ -250,6 +250,9 @@ https://www.npmjs.com/package/axios
 - Ban đầu khi chúng ta làm thì chúng ta cứ làm, khoan vội tối ưu gì cả, cứ việc làm thôi
 - xong xuôi mọi thứ rồi thì chúng ta sẽ tái cấu trúc code và tối ưu nó.
 
+- Các việc tái cấu trúc như tách nhỏ, đổi tên file, đổi tên forder...
+
+- Các việc tối ưu code như thêm propTypes...
 
 12. Cài extension check chính tả code
 
@@ -293,3 +296,61 @@ https://www.npmjs.com/package/axios
     . Các file '.env' phải ngang hàng với file 'package.json' (nó ko nằm trong forder nào hết)
     . Tên các biến bắt đầu bằng 'REACT_APP'
     . Luôn tải lại ứng dụng của bạn sau khi thay đổi tệp .env
+
+
+14. Thư viện propTypes
+
+- Vào: https://www.npmjs.com/package/prop-types
+
+- Là thư viện giúp chúng ta kiểm tra được kiểu dữ liệu cho những props trong react components.
+Hay nói cách khác: đây là thư viện giúp chúng ta validate kiểu dữ liệu của những props trong React
+
+- Cài đặt
+    . Nếu dự án của bạn được tạo bởi thư viện 'create-react-app' thì bạn không cần phải cài đặt thư viện propTypes nữa bởi vì nó đã cài sẵn cho bạn rồi
+
+- Xài: Cứ thấy component nào có props thì ta dùng propTypes (Nó dùng dc cho cả class components và function components)
+    . Viết nó ở cuối function component / class component
+
+
+    import PropTypes from 'prop-types';
+
+    function MyComponent({ data }) {
+        return (...);
+    }
+
+    MyComponent.propTypes = {
+        <!-- key: value -->
+        <!-- props: kiểu dữ liệu cho props -->
+        data: PropTypes.object,
+    }
+
+    export default MyComponent
+
+- Những cái propTypes hay dùng:
+
+    . PropTypes.các_kiểu_dữ_liệu   --> Không bắt buộc phải truyền props (props đó sẽ 'undifined' và ko bị error). Nhưng khi truyền props thì phải đúng kiểu dữ liệu
+
+    . PropTypes.node   --> bất cứ cái gì có thể render dc
+
+    . PropTypes.element
+
+    . PropTypes.elementType
+
+    . PropTypes.các_kiểu_dữ_liệu.isRequired   --> bắt buộc phải truyền props và phải đúng kiểu dữ liệu
+
+    . PropTypes.instanceOf(Message)
+
+    ( ghi chú: instance là một thực thể, một đối tượng được tạo ra bởi constructor
+
+            . VD1: 
+                const a = [1, 2]
+
+                a instanceof Array; // true
+                (a được tạo bởi Array)
+
+                a instanceof String; // false
+    )
+
+
+15. Tối ưu code:
+Khi chúng ta tạo components và chạy ngon xong, chúng ta sẽ tối ưu nó bằng cách dùng propTypes.
