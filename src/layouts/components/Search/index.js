@@ -11,8 +11,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
-import * as request from '~/utils/request';
-import * as searchServices from '~/apiServices/searchServices';
+import * as request from '~/utils/httpRequest';
+import * as searchServices from '~/services/searchService';
 
 const cx = classNames.bind(styles);
 

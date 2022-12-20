@@ -244,3 +244,52 @@ https://www.npmjs.com/package/axios
 10. Xử lý cái Warning Tippy ở console của devtools
 
 - Bao bọc cái Tippy bằng một thẻ div hoặc thẻ span
+
+11. Tái cấu trúc code là gì?
+
+- Ban đầu khi chúng ta làm thì chúng ta cứ làm, khoan vội tối ưu gì cả, cứ việc làm thôi
+- xong xuôi mọi thứ rồi thì chúng ta sẽ tái cấu trúc code và tối ưu nó.
+
+
+12. Cài extension check chính tả code
+
+- Code spell checker
+
+- Eslint
+
+
+13. Cấu hình các môi trường trong React
+
+- Các môi trường:
+
+    . Local / development: môi trường phát triền
+
+    . Test / Staging: Môi trường test
+
+    . UAT: Môi trường giống như môi trường Production (test lần cuối trước khi đưa cho người dùng cuối)
+
+    . Production: Môi trường cho người dùng cuối
+
+    --> Với môi trường khác nhau thì cần cấu hình khác nhau
+
+- Vào: https://create-react-app.dev/docs/adding-custom-environment-variables/
+
+- Bước 1: tại thư mục gốc (root) tạo các file: 
+    . .env --> Cấu hình biến môi trường chung chung
+    . .env.local --> Cấu hình môi trường trên local của máy mình (chỉ 1 mình bạn có thôi)
+    . .env.development --> Cấu hình môi trường chung của các thành viên developer
+    . .env.production --> Cấu hình môi trường production - người dùng cuối
+
+- Bước 2: Đặt các tên biến bắt đầu bằng:
+    REACT_APP_
+
+- Bước 3: Xài
+
+    console.log(process.env);
+
+    process.env.REACT_APP_BASE_URL;
+
+- Những điều cần lưu ý để tránh bị lỗi:
+    . Các file '.env' phải ngang hàng với file 'package.json' (nó ko nằm trong forder nào hết)
+    . Tên các biến bắt đầu bằng 'REACT_APP'
+    . Luôn tải lại ứng dụng của bạn sau khi thay đổi tệp .env

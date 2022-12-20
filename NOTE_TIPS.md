@@ -317,3 +317,39 @@ html *::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);
 }
 
+
+27. Cấu hình các môi trường trong React
+
+- Các môi trường:
+
+    . Local / development: môi trường phát triền
+
+    . Test / Staging: Môi trường test
+
+    . UAT: Môi trường giống như môi trường Production (test lần cuối trước khi đưa cho người dùng cuối)
+
+    . Production: Môi trường cho người dùng cuối
+
+    --> Với môi trường khác nhau thì cần cấu hình khác nhau
+
+- Vào: https://create-react-app.dev/docs/adding-custom-environment-variables/
+
+- Bước 1: tại thư mục gốc (root) tạo các file: 
+    . .env --> Cấu hình biến môi trường chung chung
+    . .env.local --> Cấu hình môi trường trên local của máy mình (chỉ 1 mình bạn có thôi)
+    . .env.development --> Cấu hình môi trường chung của các thành viên developer
+    . .env.production --> Cấu hình môi trường production - người dùng cuối
+
+- Bước 2: Đặt các tên biến bắt đầu bằng:
+    REACT_APP_
+
+- Bước 3: Xài
+
+    console.log(process.env);
+
+    process.env.REACT_APP_BASE_URL;
+
+- Những điều cần lưu ý để tránh bị lỗi:
+    . Các file '.env' phải ngang hàng với file 'package.json' (nó ko nằm trong forder nào hết)
+    . Tên các biến bắt đầu bằng 'REACT_APP'
+    . Luôn tải lại ứng dụng của bạn sau khi thay đổi tệp .env
