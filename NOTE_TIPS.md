@@ -296,22 +296,12 @@ html *::-webkit-scrollbar {
     border-radius: 0;
     width: 8px;
 }
-html *::-webkit-scrollbar {
-    border-radius: 0;
-    width: 8px;
-}
+
 html *::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(22, 24, 35, 0.06);
 }
-html *::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(22, 24, 35, 0.06);
-}
-html *::-webkit-scrollbar-track {
-    border-radius: 0;
-    background-color: rgba(0, 0, 0, 0);
-}
+
 html *::-webkit-scrollbar-track {
     border-radius: 0;
     background-color: rgba(0, 0, 0, 0);
@@ -357,3 +347,144 @@ html *::-webkit-scrollbar-track {
 
 28. A SƠN thấy các bạn trẻ ko hay review code sau khi làm xong. --> điều đó rất dễ code bị lỗi.
 Vì thế khi làm xong thì bạn nên review lại code. Rồi mới commit.
+
+
+29. Cách export hay:
+
+***** kiểu file gốc - export default *****
+
++ VD1:
+
+- Cây thư mục:
+    AccountItem --> AccountItem.js   (export default AccountItem)
+                --> index.js
+    
+
+    // AccountItem.js 
+
+        function AccountItem() {
+            return 'Hello Bình';
+        }
+
+        export default AccountItem;
+
+
+- Cách 1: kiểu export default
+    // index.js
+    export { default } from './AccountItem'
+
+    (B: 
+        // export feature declared elsewhere as default
+             export { myFunction as default };
+
+        // This is equivalent to:
+             export default myFunction;
+    )
+
+    --> xài:
+    import AccountItem from './AccountItem/index.js'
+    (or: import AccountItem from './AccountItem   --> vì index.js nó tự hiểu)
+
+
+- Cách 2: kiểu export và đồng thời đổi tên
+    // index.js
+    export { default as AccountItem} from './AccountItem'
+    (or:
+         export { default as BinhBeItem} from './AccountItem'
+    )
+
+    --> xài:
+    import { AccountItem } from './AccountItem'
+    ( or:
+         import { BinhBeItem } from './AccountItem' 
+    )
+    
+
+
+
+******* kiểu file gốc - export ***********
+
++ VD2:
+
+// childModule1.js
+
+    function myFunction() {
+    console.log("Hello!");
+    }
+    const myVariable = 1;
+    export { myFunction, myVariable };
+
+
+// parentModule.js
+
+export { myFunction, myVariable } from './childModule1.js';
+
+(B: or: 
+    export * from './childModule1.js';    // * có nghĩa: tất cả
+)
+
+--> Xài:
+    import { myFunction, myVariable } from './parentModule.js'
+
+
++ VD3:
+
+// childModule1.js
+
+    function myFunction() {
+        console.log("Hello!");
+    }
+    const myVariable = 1;
+
+    export { myFunction, myVariable };
+
+
+// childModule2.js
+    class MyClass {
+        constructor(x) {
+            this.x = x;
+        }
+    }
+
+    export { MyClass };
+
+
+// parentModule.js
+
+export { myFunction, myVariable } from './childModule1.js';  // or: export * from './childModule1.js';
+export { MyClass } from './childModule2.js';
+
+--> Xài:
+    import { myFunction, myVariable, MyClass } from './parentModule.js'
+
+
++ VD4: Đổi tên - Cũng ở VD3: Muốn đổi tên thì chỉ cần thêm 'as'
+
+// parentModule.js
+
+export { myFunction as binhFunction, myVariable as binhVariable } from './childModule1.js';
+export { MyClass as BinhClass } from './childModule2.js';
+
+--> Xài:
+    import { binhFunction, binhVariable, BinhClass } from './parentModule.js';
+
+--> import đổi tên cũng dc luôn:
+
+    import { binhFunction as beFunction, binhVariable as beVariable, BinhClass as BeClass } from './parentModule.js';
+
+
+
+30. Clean code
+
+- Gõ goole: javascript clean code
+    https://github.com/ryanmcdermott/clean-code-javascript
+    
+
+31. Design pattern
+
+- Gõ google: javascript design pattern
+    https://github.com/fbeline/design-patterns-JS
+
+    https://github.com/sohamkamani/javascript-design-patterns-for-humans
+
+

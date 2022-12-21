@@ -354,3 +354,6 @@ Hay nói cách khác: đây là thư viện giúp chúng ta validate kiểu dữ
 
 15. Tối ưu code:
 Khi chúng ta tạo components và chạy ngon xong, chúng ta sẽ tối ưu nó bằng cách dùng propTypes.
+
+16. Không nên lạm dụng useCallback và Memo để tối ưu hiệu năng. Nếu phạm vi ảnh hưởng nhỏ thì chúng ta ko nên dùng (Cái việc re-render đó nó quá nhỏ, chỉ trong phạm vi hẹp thì ko nên dùng).
+Còn nếu phạm vi ảnh hưởng lớn thì chúng ta sẽ dùng useCallback và Memo để tối ưu hiệu năng. 

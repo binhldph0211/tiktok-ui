@@ -19,17 +19,17 @@ const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
 
     // Để xử lý người dùng nhập vào ô input tìm kiếm --> tránh gọi API liên tục. Khi nào nhập xong thì mới gọi API
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
     useEffect(() => {
         // if (!searchValue.trim()) {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
@@ -42,7 +42,7 @@ function Search() {
         // fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
 
         // Cách 1.
-        //     fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+        //     fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
         //         .then((res) => res.json())
         //         .then((res) => {
         //             console.log(res.data);
@@ -52,14 +52,14 @@ function Search() {
         //         .catch(() => {
         //             setLoading(false);
         //         });
-        // }, [debounced]);
+        // }, [debouncedValue]);
         // }, [searchValue]);
 
         // Cách 2.
         //     axios
         //         .get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
         //             params: {
-        //                 q: debounced,
+        //                 q: debouncedValue,
         //                 type: 'less',
         //             },
         //         })
@@ -71,13 +71,13 @@ function Search() {
         //         .catch(() => {
         //             setLoading(false);
         //         });
-        // }, [debounced]);
+        // }, [debouncedValue]);
 
         // Cách 3.
         //     request
         //         .get('users/search', {
         //             params: {
-        //                 q: debounced,
+        //                 q: debouncedValue,
         //                 type: 'less',
         //             },
         //         })
@@ -89,14 +89,14 @@ function Search() {
         //         .catch(() => {
         //             setLoading(false);
         //         });
-        // }, [debounced]);
+        // }, [debouncedValue]);
 
         // Cách 4.
         // Tối ưu phần res.data.data thành res.data
         //     request
         //         .get('users/search', {
         //             params: {
-        //                 q: debounced,
+        //                 q: debouncedValue,
         //                 type: 'less',
         //             },
         //         })
@@ -108,14 +108,14 @@ function Search() {
         //         .catch(() => {
         //             setLoading(false);
         //         });
-        // }, [debounced]);
+        // }, [debouncedValue]);
 
         // Cách 5. Viết theo dạng async
         //     const fetchApi = async () => {
         //         try {
         //             const res = await request.get('users/search', {
         //                 params: {
-        //                     q: debounced,
+        //                     q: debouncedValue,
         //                     type: 'less',
         //                 },
         //             });
@@ -128,17 +128,17 @@ function Search() {
         //     };
 
         //     fetchApi();
-        // }, [debounced]);
+        // }, [debouncedValue]);
 
         // Cách 6.
         const fetchApi = async () => {
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
             setSearchResult(result);
             setLoading(false);
         };
 
         fetchApi();
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -168,6 +168,10 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
+
+                            {/* Cái chỗ searchResult.map() này nếu có nhiều item bên trong thì cần phải tối ưu. 
+                                Tách nó ra thành component mới. Vì nếu để như thê này thì mỗi re-render thì nó lại vòng lặp,
+                                dẫn tới ảnh hưởng hiệu năng */}
                             {searchResult.map((result) => (
                                 <AccountItem key={result.id} data={result} />
                             ))}
