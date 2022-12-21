@@ -400,7 +400,20 @@ Vì thế khi làm xong thì bạn nên review lại code. Rồi mới commit.
     )
     
 
+* Lưu ý: Trong 1 file chỉ có duy nhất 1 export default mà thôi:
 
+        . VD - Lỗi:
+
+            export { default } from './Menu';
+            export { default } from './MenuItem';
+
+        . VD - Đúng
+
+            export { default } from './Menu';
+            export { default as MenuItem } from './MenuItem';
+
+            --> Xài:
+                import Menu, { MenuItem } from './BigMenu';
 
 ******* kiểu file gốc - export ***********
 
