@@ -1,5 +1,7 @@
 ************* CÁC BƯỚC THỰC HIỆN DỰ ÁN TIKTOK ***********
 
+- github: https://github.com/sondnpt00343/tiktok-ui
+
 1. Dựng Base dự án Tiktok
 
 - B1: Giới thiệu dự án tiktok

@@ -501,3 +501,39 @@ export { MyClass as BinhClass } from './childModule2.js';
     https://github.com/sohamkamani/javascript-design-patterns-for-humans
 
 
+32. Câu mà A Sơn rất hay nói là: Làm cho đúng ngữ cảnh, ngữ nghĩa.
+component này phải đúng ngữ cảnh, ngữ nghĩa của nó. Chứ ko đi dùng lung tung dc
+
+33. Sau này đi làm, các bạn cũng phải dò xem: chức năng này mình sẽ code ở đâu.
+
+34. import thì để ý, ưu tiên:
+
+- external trước: những thư viện chúng ta cài từ ngoài vào
+- internal sau: những cái gì bên trong dự án của chúng ta
+
+
+35. Cách dùng selector giữa '+' và '~' trong CSS
+
+- Dấu '~'
+
+<span className='value'>Bình lê</span>
+<span className='label'>Followers</span>
+<span className='value'>8.2M</span>
+
+.value ~ .value {
+    font-size: 50px;
+}
+
+--> Giải thích: Chọn thằng .value ở đằng sau thỏa mãn điều kiện là có thằng .value đứng trước nó ( có thể bị gián đoạn )
+
+- Dấu '+'
+
+<span className='value'>Bình lê</span>
+<span className='value'>8.2M</span>
+<span className='label'>Followers</span>
+
+.value + .value {
+    font-size: 50px;
+}
+
+--> Giải thích: Chọn thằng .value ở đằng sau thỏa mãn điều kiện là có thằng .value ở ngay trước nó (ko bị gián đoạn)
